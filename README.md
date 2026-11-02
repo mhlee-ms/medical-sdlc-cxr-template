@@ -17,7 +17,7 @@ PR에서 승인합니다.
 
 ```mermaid
 flowchart TD
-    A["매일 00:00 UTC<br/>Daily paper recommendations"] --> B["PR: recommended/{date}/<br/>논문별 paper.md + 관련성 README"]
+    A["수동 실행(선택: 매일 크론)<br/>Daily paper recommendations"] --> B["PR: recommended/{date}/<br/>논문별 paper.md + 관련성 README"]
     B -->|자동 머지| C["이슈 등록<br/>Paper analysis request 템플릿"]
     C -->|등록 즉시| D["Paper probing"]
     D --> E["PR: 본문에 probing 리포트<br/>파일은 analysis/{issue}/plan.md<br/>라벨 probing-&lt;issue&gt;"]
@@ -32,7 +32,7 @@ flowchart TD
 
 | 단계 | 워크플로 | 트리거 | 산출물 |
 |---|---|---|---|
-| 1. 수집 | `daily-paper-recommendations.md` | 매일 크론 · 수동 | `recommended/{date}/` |
+| 1. 수집 | `daily-paper-recommendations.md` | 수동 (크론은 SETUP.md) | `recommended/{date}/` |
 | 2. probing | `paper-probing.md` | 이슈 등록 | PR 본문 리포트 + `analysis/{issue}/plan.md` |
 | 3. 딥다이브 | `paper-deep-dive.md` | probing PR 머지 | `analysis/{issue}/` |
 | 4. 검증 | `analysis-verification.md` | 3단계 완료 · 수동 | `checks` 기록 + PR 리뷰 |
